@@ -1,0 +1,25 @@
+<section data-ng-controller="BooksController" data-ng-init="findOne()">
+	<div class="page-header">
+		<h1 data-ng-bind="book.title"></h4>
+		<h4 data-ng-bind="book.author"></h4>
+		<h4 data-ng-bind="book.category"></h4>
+		<h4 data-ng-bind="book.publishedDate"></h4>
+		<h4 data-ng-bind="book.description"></h4>
+	</div>
+	<div class="pull-right" data-ng-show="authentication.user._id == book.user._id">
+		<a class="btn btn-primary" href="/#!/books/{{book._id}}/edit">
+			<i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-primary" data-ng-click="remove();">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>
+	<small>
+		<em class="text-muted">
+			Posted on
+			<span data-ng-bind="book.created | date:'mediumDate'"></span>
+			by
+			<span data-ng-bind="book.user.displayName"></span>
+		</em>
+	</small>
+</section>
