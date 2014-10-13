@@ -15,17 +15,21 @@ module.exports = function(app) {
 		.put(users.requiresLogin, books.hasAuthorization, books.update)
 		.delete(users.requiresLogin, books.hasAuthorization, books.delete);
 
+
+	// Search Route
+	// app.route('/search')
+
+	// Reviews Routes
 	app.route('/books/:bookId/reviews')
+		// .get(books.reviewsList)
         .post(users.requiresLogin, books.addReview);
 
     app.route('/books/:bookId/reviews/:reviewId')
         .delete(users.requiresLogin, books.hasAuthorization, books.deleteReview);
 
+    // Likes Route
     app.route('/books/:bookId/like')
         .post(users.requiresLogin, books.likePost);
-
-    // app.route('/books/:bookId/unlike')
-    //     .delete(users.requiresLogin, books.unlikePost);
 
 	// Finish by binding the Book middleware
 	app.param('bookId', books.bookByID);

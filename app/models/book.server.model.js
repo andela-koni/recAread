@@ -30,12 +30,13 @@ var LikeSchema = new Schema({
 		type: Number,
 		default:''
 	},
-	
+
     user: {
         type: Schema.ObjectId,
         ref: 'User'
     }
 });
+
 
 
  // Book Schema
@@ -61,9 +62,9 @@ var BookSchema = new Schema({
 		required: 'Please fill Book Author',
 		trim: true
 	},
-	category: {
+	genre: {
 		type: String,
-		required: 'Please fill Book Category',
+		required: 'Please fill Book Genre',
 		trim: true
 	},
 	publishedDate: {
@@ -76,9 +77,14 @@ var BookSchema = new Schema({
 		required: 'Please fill Book Description',
 		trim: true
 	},
+	image: {
+		type: String,
+		default: ''
+	},
 	reviews:[reviewsSchema],
 	likes: [LikeSchema]
 }); 
 
 
 mongoose.model('Book', BookSchema);
+mongoose.model('Review', reviewsSchema);

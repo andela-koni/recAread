@@ -6,9 +6,25 @@
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="name">Title</label>
                     <div class="controls">
                         <input type="text" data-ng-model="book.title" id="title" class="form-control" placeholder="Title" required>
+                    </div>
+                    <label class="control-label" for="author">Author</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="book.author" id="author" class="form-control" placeholder="Author" required>
+                    </div>
+                    <label class="control-label" for="genre">Genre</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="book.genre" id="genre" class="form-control" placeholder="Genre" required>
+                    </div>
+                    <label class="control-label" for="description">Description</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="book.description" id="description" class="form-control" placeholder="Description" required>
+                    </div>
+                    <label class="control-label" for="publishedDate">PublishedDate</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="book.publishedDate" id="publishedDate" class="form-control" placeholder="PublishedDate" required>
                     </div>
                 </div>
                 <div class="form-group">

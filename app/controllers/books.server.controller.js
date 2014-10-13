@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors'),
 	Book = mongoose.model('Book'),
+	Review = mongoose.model('Review'),
 	_ = require('lodash');
 
 /**
@@ -53,7 +54,7 @@ exports.update = function(req, res) {
 };
 
 /**
- * Delete an Book
+ * Delete a Book
  */
 exports.delete = function(req, res) {
 	var book = req.book ;
@@ -87,7 +88,8 @@ exports.list = function(req, res) {
 /**
  * Book middleware
  */
-exports.bookByID = function(req, res, next, id) { Book.findById(id).populate('user', 'displayName').exec(function(err, book) {
+exports.bookByID = function(req, res, next, id) { 
+		Book.findById(id).populate('user', 'displayName').exec(function(err, book) {
 		if (err) return next(err);
 		if (! book) return next(new Error('Failed to load Book ' + id));
 		req.book = book ;
@@ -105,6 +107,41 @@ exports.hasAuthorization = function(req, res, next) {
 	next();
 };
 
+/**
+ *Search for book by title, author or genre
+ */
+// exports.bookSearch = function(req,res){  
+
+//   var $or = {$or:[]};
+//   var checkQuery = function(){
+//     if (req.query.title &&req.query.title.length > 0){
+//       $or.$or.push({title : new RegExp(req.query.title)});
+//     }
+//     if (req.query.author && req.query.author.length > 1){
+//       $or.$or.push({author: new RegExp(req.query.authorization)});
+//     }
+//     if(req.query.genre && req.query.genre.length > 1)
+//     {
+//       $or.$or.push({genre:new RegExp(req.query.genre)});
+//     }
+//   };
+
+//   checkQuery();
+//   Book.find($or).exec(function(err, data){
+//     if(err) {
+//       return res.status(400).send({
+//         message: errorHandler.getErrorMessage(err)
+//       });
+//     } else {
+//       res.jsonp(data);
+//       console.log(req.body);
+//     }
+//   });
+// };
+
+/**
+ *Add a Review
+ */
 exports.addReview = function(req, res) {
     var book = req.book;
     var review = req.body;
@@ -123,6 +160,9 @@ exports.addReview = function(req, res) {
     });
 };
 
+/**
+ *Delete a Review
+ */
 exports.deleteReview = function(req, res){
 	var book = req.book;
 
@@ -139,7 +179,9 @@ exports.deleteReview = function(req, res){
     });
 };
 
-
+/**
+ * Like a Post
+ */
 exports.likePost = function(req, res){
 	var book = req.book,
         like = req.body;
@@ -174,6 +216,9 @@ exports.likePost = function(req, res){
     
 };
 
+/**
+ *Review Middleware
+ */
 exports.reviewByID = function(req, res, next, id) {
 		var book = req.book;
 		req.review = book.reviews.id(id);

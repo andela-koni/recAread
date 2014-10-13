@@ -11,3 +11,26 @@ angular.module('books').factory('Books', ['$resource',
 		});
 	}
 ]);
+
+angular.module('books').factory('Reviews', ['$resource',
+	function($resource) {
+		return $resource('books/:bookId/reviews/:reviewId', { bookId: '@bookId', reviewId: '@_id'
+		}, {
+			update: {
+				method: 'POST'
+			}
+		});
+	}
+]);
+
+angular.module('books').factory('Likes', ['$resource',
+	function($resource) {
+		return $resource('books/:bookId/like', { 
+			bookId: '@bookId'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);

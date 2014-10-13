@@ -1,5 +1,40 @@
 <section data-ng-controller="HomeController">
-	<div class="jumbotron text-center">
+	<!-- <form ng-class="{focus:focus}" class="navbar-search col-md-3 docs-search ng-pristine ng-valid" ng-submit="submit()">
+      <span class="glyphicon glyphicon-search search-icon"></span>
+      <input type="text" name="as_q" class="search-query ng-pristine ng-untouched ng-valid" placeholder="Click or press / to search" ng-focus="focus=true" ng-blur="focus=false" ng-change="search(q)" ng-model="q" docs-search-input="" autocomplete="off">
+    </form> -->
+
+    <form class="form-horizontal" data-ng-submit="()" novalidate autocomplete="on">
+		<fieldset>
+		    <input ng-model='reviewText' type="text" placeholder="Search by title, author or genre" autocomplete="on">
+		    <input type="submit" class="btn" value="Go!">
+		</fieldset>
+	</form>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="jumbotron text-center">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
 				<img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/img/brand/logo.png" />
@@ -90,5 +125,4 @@
 		</p>
 	</div>
 	<br>Enjoy &amp; Keep Us Updated,
-	<br>The MEAN.JS Team.
-</section>
+	<br>The MEAN.JS Team. -->

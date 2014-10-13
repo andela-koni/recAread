@@ -1,23 +1,44 @@
 'use strict';
 
 // Books controller
-angular.module('books').controller('BooksController', ['$scope', '$stateParams', '$location', 'Authentication', 'Books', , 'Reviews', 'Likes',
-	function($scope, $stateParams, $location, Authentication, Books ) {
+angular.module('books').controller('BooksController', ['$scope', '$stateParams', '$location', 'Authentication', 'Books', 'Reviews', 'Likes',
+	function($scope, $stateParams, $location, Authentication, Books, Reviews, Likes) {
 		$scope.authentication = Authentication;
 		$scope.liked = false;
-
+		$scope.showReview = false;
 
 		// BOOK
 
+
+			$scope.fileUpload=function(){
+				var fileInput = document.getElementById('fileInput');
+		        var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+		    	fileInput.addEventListener('change', function(e) {
+		        	var files = e.target.files;
+		        	if(files && files[0] !== null) {
+
+			       		var reader = new FileReader();
+			        	reader.onload = function(e) {
+			        		$scope.image = reader.result;       
+			    		};
+			       		 reader.readAsDataURL(files[0]);    
+		       		}
+		    	});	
+			};
+
+
+
 			// Create new Book
-			$scope.createBook = function() {
+			$scope.create = function() {
 				// Create new Book object
 				var book = new Books ({
 					title: this.title,
 					author: this.author,
-					category: this.category,
+					genre: this.genre,
 					publishedDate: this.publishedDate,
-					description: this.description
+					description: this.description,
+					image: $scope.image
 				});
 
 				// Redirect after save
@@ -27,9 +48,10 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 					// Clear form fields
 					$scope.title = '';
 					$scope.author = '';
-					$scope.category = '';
+					$scope.genre = '';
 					$scope.publishedDate = '';
 					$scope.description = '';
+
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
 				});
@@ -37,7 +59,7 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 
 
 			// Remove existing Book
-			$scope.removeBook = function( book ) {
+			$scope.remove = function( book ) {
 				if ( book ) { book.$remove();
 
 					for (var i in $scope.books ) {
@@ -55,7 +77,7 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 
 
 			// Update existing Book
-			$scope.updateBook = function() {
+			$scope.update = function() {
 				var book = $scope.book ;
 
 				book.$update(function() {
@@ -74,7 +96,10 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 			$scope.findOne = function() {
 				$scope.book = Books.get({ 
 					bookId: $stateParams.bookId
-				});
+				}, function(){
+					$scope.likes = $scope.book.likes.length;
+				}); 
+								
 			};
 
 		// COMMENT	
@@ -82,24 +107,25 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 			// Add a review/comment
 			$scope.createReview = function() {
 				// add a new review/comment
-				var review = new Review ({
+				console.log('message');
+				var review = new Reviews ({
 					bookId: $scope.book._id,
 					reviewText: $scope.reviewText
 				});
-
+				console.log(review);
 				// Redirect after save
 				review.$save(function(response) {
 					$scope.book = response;
-					// Clear form fields
 					$scope.reviewText = '';
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
 				});
+				$scope.showReview = false;
 			};
 
 			// Delete a Review
 			$scope.deleteReview = function( review ) {
-				var review = new reviews ({
+				var rview = new Reviews ({
 					bookId: $scope.book._id,
 					_id: review._id,
 					reviewer: review.reviewer
@@ -111,8 +137,9 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 
 		// LIKES
 
-			//checks if user has already liked a book
-	        $scope.checkLikes = function(likes) {
+			// checks if user has already liked a book
+	        $scope.checkLikes = function() {
+	        	var likes = $scope.book.likes;
 	           for (var i in likes) {
 	                if (likes[i].user === $scope.authentication.user._id) {
 	                    $scope.liked = true;
@@ -130,17 +157,18 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 	        //like a book
 	        $scope.likeBook = function() {
 	            var like = new Likes ({
-	                bookId: $scope.book._id,
-	                dest: 'like'
+	            	bookId: $stateParams.bookId,
+	                likes: 1
 	            });
 
 	            like.$save(function(response) {
 	                $scope.book = response;
 	                $scope.liked = true;
+	                $scope.likes = $scope.book.likes.length;
 	            }, function(errorResponse) {
 	                $scope.likeError = errorResponse.data.message;
 	            });
 	   		};
-	   	//
+	   	
 	}
 ]); 
