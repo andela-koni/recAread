@@ -68,7 +68,7 @@ var BookSchema = new Schema({
 		trim: true
 	},
 	publishedDate: {
-		type: String,
+		type: Date,
 		required: 'Please fill Book Published Date',
 		trim: true
 	},

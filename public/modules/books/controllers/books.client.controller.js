@@ -169,6 +169,11 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 	                $scope.likeError = errorResponse.data.message;
 	            });
 	   		};
+
+
+   		$scope.fetchUser = function(userId) {
+   			
+   		}
 	   	
 	}
 ]); 
