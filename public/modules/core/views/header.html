@@ -1,73 +1,41 @@
 <div class="" data-ng-controller="HeaderController">
-	<div class="t3-wrapper">
-		<header id="t3-header" class="wrap t3-header">
-			<div class="wrapper">
-				<div class="row">
-					<div class="col-xs-12 col-md-3 logo col-sm-6">
-						<div class="logo-image">
-							<a href="#!/" title="">
-								<img class="logo-img" src="modules/core/img/brand/logoImg.jpg" alt="">
-							</a>
-						</div>
-					</div>
-					<nav id="t3-mainnav" class="col-xs-12 col-md-6 t3-mainnav navbar navbar-default hidden-sm">
-						<div class="navbar-header">
-						</div>
-						<div class="t3-navbar navbar-collapse collapse">
-							<div class="t3-megamenu animate slide" data-duration="400" data-responsive="true">
-								<ul class="nav navbar-nav level0">
-									<li class="current active" data-id="576" data-level="1">
-										<a class href="#!/" data-target="#">Home</a> 
-									</li>
-									<li data-id="510" data-level="1" class>
-										<a href="/books/forums" data-target="#">Forums</a>
-									</li>
-									<li class="dropdown mega" data-id="294" data-level="">
-										<a class="dropdown-toggle" href="#" data-target="#" data-toggle="dropdown">
-											Log In
-											<b class="caret"></b>
-										</a>
-										<div class="nav-child dropdown-menu mega-dropdwon-menu">
-											<div class="mega-dropdown-inner">
-												<div class="row">
-													<div class="col-xs-12 mega-col-nav" data-width="12">
-														<div class="mega-inner">
-															<ul class="mega-nav level1">
-																<li data-id="233" data-level="2">
-																	<a href="" data-target="#">Sign In</a>
-																</li>
-																<li data-id="561" data-level="2">
-																	<a href="" data-target="#">Sign Up</a>
-																</li>
-															</ul>
-													</div>
-
-												</div>
-											</div>
-										</div>
-
-									</li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-					<div class="col-xs-12 col-md-3 pull-right col-sm-6">
-			  					<!-- HEAD SEARCH -->
-						<div class="head-search ">
-							<div class="search">
-									<form action="/cssbookshops/index.php" method="post" class="form-inline form-search">
-										<label for="mod-search-searchword" class="element-invisible"></label> <input name="searchword" id="mod-search-searchword" maxlength="20"  class="form-control" type="text" size="25" placeholder="Search..." />		
-										<input type="hidden" name="task" value="search" />
-										<input type="hidden" name="option" value="com_search" />
-										<input type="hidden" name="Itemid" value="576" />
-									</form>
-									
-								</div>
-  							</div>
-  		    			</div>
-					</div>
-				</div>
+	<link href='http://fonts.googleapis.com/css?family=BenchNine:700|Habibi' rel='stylesheet' type='text/css'>
+	<nav class="navbar navbar-default" role="navigation">
+  		<div class="container-fluid" style="background:#f0141e;">
+    	<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+					<a href="/#!/" title="">
+						<img class="logo-img" src="modules/core/img/brand/logoImg.jpg" alt="">
+					</a>
 			</div>
-		</header>
-	</div>
+
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav" >
+				    <li class="current active"><a href="/#!/">HOME</a></li>
+				    <li><a href="/#!/books">BOOKS</a></li>
+				    <li class="dropdown">
+				      <a href="#" class="dropdown-toggle" data-toggle="dropdown">LOGIN<span class="caret"></span></a>
+				      <ul class="dropdown-menu" role="menu">
+				        <li ui-route="/signup" ng-class="{active: $uiRoute}"><a href="/#!/signup">Sign Up</a></li>
+				        <li class="divider"></li>
+				        <li ui-route="/signin" ng-class="{active: $uiRoute}"><a href="/#!/signin">Sign In</a></li>
+				        <!-- <li class="divider"></li> -->
+				      </ul>
+				    </li>
+				</ul>
+			    <form class="navbar-form navbar-left pull-right" role="search">
+			    	<div class="form-group">
+			          <input type="text" class="form-control" placeholder="Search by title, author or genre">
+			        </div>
+			        <button type="submit" class="btn btn-danger">Submit</button>
+			    </form>
+		    </div><!-- /.navbar-collapse -->
+	  	</div><!-- /.container-fluid -->
+	</nav>
 </div>
