@@ -19,21 +19,30 @@
 				<ul class="nav navbar-nav" >
 				    <li class="current active"><a href="/#!/">HOME</a></li>
 				    <li><a href="/#!/books">BOOKS</a></li>
-				    <li class="dropdown">
+				    <li class="dropdown" data-ng-hide="authentication.user">
 				      <a href="#" class="dropdown-toggle" data-toggle="dropdown">LOGIN<span class="caret"></span></a>
 				      <ul class="dropdown-menu" role="menu">
 				        <li ui-route="/signup" ng-class="{active: $uiRoute}"><a href="/#!/signup">Sign Up</a></li>
 				        <li class="divider"></li>
 				        <li ui-route="/signin" ng-class="{active: $uiRoute}"><a href="/#!/signin">Sign In</a></li>
-				        <!-- <li class="divider"></li> -->
 				      </ul>
+				    </li>
+				    <li class="dropdown" data-ng-show="authentication.user">
+				    	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{authentication.user.username}}<span class="caret"></span></a>
+					      <ul class="dropdown-menu" role="menu">
+					        <li><a href="/#!/settigns/profile">Edit Profile</a></li>
+					        <li class="divider"></li>
+					        <li><a href="/#!/settings/accounts">Manage Social Accounts</a></li>
+					        <li data-ng-show="authentication.user.provider === 'local'"><a href="/#!/settings/password">Change Password</a></li>
+					        <li><a href="/auth/signout">Signout</a></li>
+					      </ul>
 				    </li>
 				</ul>
 			    <form class="navbar-form navbar-left pull-right" role="search">
 			    	<div class="form-group">
 			          <input type="text" class="form-control" placeholder="Search by title, author or genre">
 			        </div>
-			        <button type="submit" class="btn btn-danger">Submit</button>
+			        <button type="submit" class="btn btn-danger">GO!</button>
 			    </form>
 		    </div><!-- /.navbar-collapse -->
 	  	</div><!-- /.container-fluid -->

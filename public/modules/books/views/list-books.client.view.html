@@ -1,15 +1,14 @@
 <section data-ng-controller="BooksController" data-ng-init="find()">
     <div class="page-header" style="border:none">
-        <h1>Books</h1>
     </div>
     <div class="list-group">
         <a data-ng-repeat="book in books" data-ng-href="#!/books/{{book._id}}" class="list-group-item">
-			<small class="list-group-item-text">
+			<!-- <small class="list-group-item-text">
 				Posted on
 				<span data-ng-bind="book.created | date:'medium'"></span>
 				by
 				<span data-ng-bind="book.user.displayName"></span>
-			</small>
+			</small> -->
 			<h4 class="list-group-item-heading" data-ng-bind="book.title"></h4>
         </a>
     </div>

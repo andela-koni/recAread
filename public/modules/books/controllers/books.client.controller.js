@@ -107,12 +107,11 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 			// Add a review/comment
 			$scope.createReview = function() {
 				// add a new review/comment
-				console.log('message');
+			
 				var review = new Reviews ({
 					bookId: $scope.book._id,
 					reviewText: $scope.reviewText
 				});
-				console.log(review);
 				// Redirect after save
 				review.$save(function(response) {
 					$scope.book = response;
@@ -171,9 +170,7 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 	   		};
 
 
-   		$scope.fetchUser = function(userId) {
-   			
-   		}
+   		
 	   	
 	}
 ]); 
