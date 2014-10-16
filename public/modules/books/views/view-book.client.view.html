@@ -23,7 +23,9 @@
     				<li data-ng-repeat="review in book.reviews">Review: {{review.reviewText}} | Date: {{review.created | date:'medium'}} by {{review.reviewer}}</li>
     			</ul>
     		</div>
-    		<button type="button" class="btn btn-info" data-ng-hide="showReview" data-ng-click="showReview = true"><span class="glyphicon glyphicon-pencil"></span>Write a Review</button>
+    		<div data-ng-show="authentication.user._id === book.user._id">
+    			<button type="button" class="btn btn-info" data-ng-hide="showReview" data-ng-click="showReview = true"><span class="glyphicon glyphicon-pencil"></span>Write a Review</button>
+    		</div>
     		<div>
 				<form class="form-horizontal" data-ng-show="showReview" data-ng-submit="createReview()" novalidate>
 					<fieldset>

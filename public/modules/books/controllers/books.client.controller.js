@@ -1,33 +1,35 @@
 'use strict';
 
 // Books controller
-angular.module('books').controller('BooksController', ['$scope', '$stateParams', '$location', 'Authentication', 'Books', 'Reviews', 'Likes',
-	function($scope, $stateParams, $location, Authentication, Books, Reviews, Likes) {
+angular.module('books').controller('BooksController', ['$scope', '$stateParams', '$location', 'Authentication', 'Books', 'Reviews', 'Likes', '$timeout',
+	function($scope, $stateParams, $location, Authentication, Books, Reviews, Likes, $timeout) {
 		$scope.authentication = Authentication;
 		$scope.liked = false;
 		$scope.showReview = false;
 
 		// BOOK
 
-
+			// Upload a Bookcover Image
 			$scope.fileUpload=function(){
 				var fileInput = document.getElementById('fileInput');
 		        var fileDisplayArea = document.getElementById('fileDisplayArea');
-
+		    	
 		    	fileInput.addEventListener('change', function(e) {
 		        	var files = e.target.files;
 		        	if(files && files[0] !== null) {
 
 			       		var reader = new FileReader();
 			        	reader.onload = function(e) {
-			        		$scope.image = reader.result;       
+			        		$scope.response = reader.result;
 			    		};
-			       		 reader.readAsDataURL(files[0]);    
+			       		 reader.readAsDataURL(files[0]);  
+			       		 
 		       		}
+					$timeout(function(){
+						$scope.image = $scope.response;
+					}, 1000);
 		    	});	
 			};
-
-
 
 			// Create new Book
 			$scope.create = function() {
@@ -69,7 +71,7 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 					}
 				} else {
 					$scope.book.$remove(function() {
-						$location.path('books');
+						$location.path('books/create');
 					});
 				}
 			};
@@ -106,7 +108,6 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 
 			// Add a review/comment
 			$scope.createReview = function() {
-				// add a new review/comment
 			
 				var review = new Reviews ({
 					bookId: $scope.book._id,
@@ -168,9 +169,6 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 	                $scope.likeError = errorResponse.data.message;
 	            });
 	   		};
-
-
-   		
-	   	
+		   	
 	}
 ]); 

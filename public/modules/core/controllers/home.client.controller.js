@@ -11,12 +11,12 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		$scope.myInterval = 5000;
 
 		$scope.quotes = [
-			'So many books, so little time', 
-			'A reader lives a thousand lives before he dies, said Jojen. The man who never reads lives only one',
-			'If you can make a woman laugh, you can make her do anything',
-			'All extremes of feelings are allied with madness',
-			'It does not do to dwell on dreams and forget to live',
-			'I am not afraid of death, I just want to be there when it happens',
+			'"So many books, so little time"', 
+			'"A reader lives a thousand lives before he dies, said Jojen. The man who never reads lives only one"',
+			'"If you can make a woman laugh, you can make her do anything"',
+			'"All extremes of feelings are allied with madness"',
+			'"It does not do to dwell on dreams and forget to live"',
+			'"I am not afraid of death, I just want to be there when it happens"',
 			// 'If I offer you a glass of water and I bring back a glass of ice, I\'m trying to teach you patience. And also that sometimes you get ice with no water, and later you\'ll get water with no ice. Ah, but that\'s life, no? ''If I offer you a glass of water and I bring back a glass of ice, I\'m trying to teach you patience. And also that sometimes you get ice with no water, and later you\'ll get water with no ice. Ah, but that\'s life, no? '
 
 		];

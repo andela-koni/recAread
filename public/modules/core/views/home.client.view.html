@@ -5,20 +5,18 @@
 				<div class='row'>
 					<div class='col-md-12 col-xs-12'>
 						<img ng-repeat="slide in slides"  ng-swipe-right="showPrev()" ng-swipe-left="showNext()" ng-show="isActive($index)" ng-src="{{slide}}" style="width: 90%; height: 420px;" />
-             
-		                <!-- prev / next controls -->
-		                <a class="arrow prev" href="#!" ng-click="showPrev()"></a>
-		                <a class="arrow next" href="#!" ng-click="showNext()"></a>
+
+						 <!-- prev / next controls -->
+						<a class="arrow prev" href="#!" ng-click="showPrev()"></a>
+						<a class="arrow next" href="#!" ng-click="showNext()"></a>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-12 col-md-3">
-				<div style="border:1px red solid; height:200px; font-family:'Habibi', serif; font-weight:bold;">
-					<div ng-repeat = "quote in quotes" class="slide">
+				<div style=" margin-top:10px; height:200px; font-family:'Habibi', serif; font-weight:bold; background:#181818; color: white;">
+					<div ng-repeat = "quote in quotes" class="slide" style="text-align:center;">
 						<p ng-show="isActiveQ($index)">{{quote}}</p>
-					</div>
-            
-	                
+					</div>   
 				</div>
 			</div>
 		</div>

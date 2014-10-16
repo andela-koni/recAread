@@ -2,6 +2,11 @@ body {
 	background: #ECE4CB;
 }
 
+.addbutton {
+	float: right;
+	margin-top: -42px;
+}
+
 
 .nav.navbar-nav{
 	margin-left: 100px
@@ -12,7 +17,7 @@ body {
 	font-size: 20px;
 	font-family: 'BenchNine', Helvetica, Arial, sans-serif;
 	font-weight: normal;
-	line-height: 31px;
+	line-height: 36px;
 	margin: 0 auto;
 }
 
@@ -30,13 +35,6 @@ background: #dc0e17;
 	background: #dc0e17;
 }
 
-p {
-	margin: 10px 0 10px 15px;
-	font-weight: bold;
-	font-size: 17px;
-	font-family:'Habibi', serif;
-}
-
 .quotes{
 	width: 313px;
 }
@@ -49,6 +47,8 @@ p {
 	font-family: 'Habibi', serif;
 }
 
+
+/*SLIDES*/
 
 .slider {
     border: 15px solid #FFFFFF;
@@ -114,4 +114,25 @@ p {
 
 .slide, .slide.ng-hide-remove.ng-hide-remove-active {
     opacity:1;
+}
+
+
+/*Book Images*/
+
+a.list-group-item {
+	display: inline-block;
+	margin:20px 20px;
+	max-width: 150%;
+}
+
+img.img-responsive {
+	height: 300px;
+}
+
+.list-group-item-text {
+	font-family:'Habibi';
+	text-align: center; 
+	color: #007373;
+	margin-top: 5px;
+	font-size: 12px;
 }
