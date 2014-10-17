@@ -89,7 +89,7 @@ exports.list = function(req, res) {
  * Book middleware
  */
 exports.bookByID = function(req, res, next, id) { 
-		Book.findById(id).populate('user', 'displayName').exec(function(err, book) {
+	Book.findById(id).populate('user', 'displayName').populate('reviews').exec(function(err, book) {
 		if (err) return next(err);
 		if (! book) return next(new Error('Failed to load Book ' + id));
 		req.book = book ;
@@ -110,34 +110,19 @@ exports.hasAuthorization = function(req, res, next) {
 /**
  *Search for book by title, author or genre
  */
-// exports.bookSearch = function(req,res){  
+exports.searchByA = function (req, res, next, searchparam) {
+	Book.find({author: searchparam}).sort('-created').exec( function(err, search_result) {
+		if(search_result){
+			req.searchresult = search_result;
+			next();
+		}
+		else return next(err);
+	});
+};
+exports.searchbook = function(req, res){
+  res.jsonp(req.searchresult);
+};
 
-//   var $or = {$or:[]};
-//   var checkQuery = function(){
-//     if (req.query.title &&req.query.title.length > 0){
-//       $or.$or.push({title : new RegExp(req.query.title)});
-//     }
-//     if (req.query.author && req.query.author.length > 1){
-//       $or.$or.push({author: new RegExp(req.query.authorization)});
-//     }
-//     if(req.query.genre && req.query.genre.length > 1)
-//     {
-//       $or.$or.push({genre:new RegExp(req.query.genre)});
-//     }
-//   };
-
-//   checkQuery();
-//   Book.find($or).exec(function(err, data){
-//     if(err) {
-//       return res.status(400).send({
-//         message: errorHandler.getErrorMessage(err)
-//       });
-//     } else {
-//       res.jsonp(data);
-//       console.log(req.body);
-//     }
-//   });
-// };
 
 /**
  *Add a Review
@@ -155,7 +140,7 @@ exports.addReview = function(req, res) {
             });
         }   
         else {
-            res.jsonp(book);
+            res.jsonp(book.reviews);
         }
     });
 };

@@ -1,7 +1,7 @@
 <section data-ng-controller="BooksController" data-ng-init="fileUpload(); find()" data-ng-show="authentication.user._id">
-    <div class="col-md-12" style="margin-top: -30px; " data-ng-hide="createBook">
+    <div class="col-md-12" data-ng-hide="createBook">
         <div class="page-header">
-            <h1 style="font-family: 'BenchNine', Helvetica, Arial, sans-serif;">My Library</h1>
+            <h1>My Library</h1>
             <div class="addbutton">
                 <button type="button" class="btn btn-info" data-ng-click="createBook = true">Add New Book</button>
             </div>
@@ -12,7 +12,6 @@
                     <div class="listImage">
                         <img class="img-responsive" ng-src="{{book.image}}"/>
                     </div>
-                    <!-- <h4 class="list-group-item-heading" data-ng-bind="book.title"></h4> -->
                     <small class="list-group-item-text">
                         Posted on
                         <span data-ng-bind="book.created | date:'mediumDate'"></span>
@@ -21,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12" data-ng-show="createBook" style="margin-top: -30px">
+    <div class="col-md-12" data-ng-show="createBook">
         <div class="page-header">
             <h1>Create a new Book</h1>
         </div>
@@ -48,6 +47,7 @@
                     <div class="controls">
                         <textarea type="text" data-ng-model="description" id="Description" class="form-control" rows="3" placeholder="Add a short description of the book" required></textarea>
                     </div>
+                    <label class="control-label" for="image">Upload Book Cover:</label>
                     <div class="controls">
                         <input type="file" id="fileInput">
                         <img data-ng-src="{{image}}">         

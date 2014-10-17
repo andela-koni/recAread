@@ -15,10 +15,10 @@ module.exports = function(app) {
 		.put(users.requiresLogin, books.hasAuthorization, books.update)
 		.delete(users.requiresLogin, books.hasAuthorization, books.delete);
 
-
-	// Search Route
-	// app.route('/search')
-
+	// Search  Route
+	app.route('/:searchByAuthor')
+		.get(books.searchbook);
+		
 	// Reviews Routes
 	app.route('/books/:bookId/reviews')
 		// .get(books.reviewsList)
@@ -36,4 +36,7 @@ module.exports = function(app) {
 
 	// Finish by binding the Review middleware
 	app.param('reviewId', books.reviewByID);
+
+	app.param('searchByAuthor', books.searchByA);
+
 };

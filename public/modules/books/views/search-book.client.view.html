@@ -1,9 +1,7 @@
-<section data-ng-controller="BooksController" data-ng-init="find()">
-    <div class="page-header" style="border:none">
-    </div>
-    <div class="list-group" style="margin-top: -40px;">
-        <div class="row">
-            <div ng-repeat="book in books" class="col-xs-8 col-md-3 col-md-offset-0 col-xs-offset-2">
+<section data-ng-controller="BooksController" data-ng-init="load_search()">
+<div class="row">
+<div class="container">
+ <div ng-repeat="book in book_result" class="col-xs-8 col-md-3 col-md-offset-0 col-xs-offset-2">
                 <a data-ng-href="#!/books/{{book._id}}" class="list-group-item">
                     <div class="listImage">
                         <img class="img-responsive" ng-src="{{book.image}}"/>
@@ -17,9 +15,5 @@
                     </small>
                 </a>
             </div>
-        </div>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!books.$resolved || books.length">
-    	No Books yet, why don't you <a href="/#!/books/create">create one</a>?
-    </div>
+</div>
 </section>

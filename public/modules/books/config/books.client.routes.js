@@ -20,6 +20,10 @@ angular.module('books').config(['$stateProvider',
 		state('editBook', {
 			url: '/books/:bookId/edit',
 			templateUrl: 'modules/books/views/edit-book.client.view.html'
+		}).
+		state('searchbook', {
+			url: '/search_page/:author',
+			templateUrl: 'modules/books/views/search-book.client.view.html'
 		});
 	}
 ]);

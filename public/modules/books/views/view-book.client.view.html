@@ -1,58 +1,53 @@
-<section data-ng-controller="BooksController" data-ng-init="findOne()">
-	<div class="page-header">
-		<!-- <h3>Title<h3> -->
-		<img ng-src="{{book.image}}">
+<section data-ng-controller="BooksController" class="bookpage" data-ng-init="findOne()">
+	<div class="page-header clearfix">
+		<!-- Page Content -->
 
-		<a class="btn btn-primary" data-ng-click="likeBook();" data-ng-disabled="checkLikes()">
-			<span class="glyphicon glyphicon-thumbs-up">
-			<i class="">Like</i>
-		</a> Likes: {{likes}}
-		<h3>Title:<h3> <h4 data-ng-bind="book.title"></h4>
-		<h3>Author<h3>
-		<h4 data-ng-bind="book.author"></h4>
-		<h3>Genre<h3>
-		<h4 data-ng-bind="book.genre"></h4>
-		<h3>Published Date<h3>
-		<h4 data-ng-bind="book.publishedDate"></h4>
-		<h3>About this Book<h3>
-		<h4 data-ng-bind="book.description"></h4>
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-2">
+                <img class="img-responsive" ng-src="{{book.image}}" alt="">
+            </div>
+
+            <div class="col-md-7">
+                <div>
+                    <h2 data-ng-bind="book.title"></h2>
+                    <p>By <span class="author" data-ng-bind="book.author"><span></p>
+                    <p>Published Date: <span data-ng-bind="book.publishedDate"><span></p>
+                </div>
+                <div class="page-header"></div>
+                <p class= "description" data-ng-bind="book.description"></p>
+            </div>
+            <div class="col-lg-2">
+                	<div class="pull-right class=col-lg-6" data-ng-show="authentication.user._id == book.user._id">
+						<a class="btn btn-primary" href="/#!/books/{{book._id}}/edit">
+							<i class="glyphicon glyphicon-edit"></i>
+						</a>
+						<a class="btn btn-primary" data-ng-click="remove();">
+							<i class="glyphicon glyphicon-trash"></i>
+						</a>
+					</div>
+            </div>
+        </div>
+        <!-- /.row -->
 		
-    	<div class="reviewBody">
-    		<div class="reviewlist">
-    			<ul>
-    				<li data-ng-repeat="review in book.reviews">Review: {{review.reviewText}} | Date: {{review.created | date:'medium'}} by {{review.reviewer}}</li>
+    	<div class="reviewBody clearfix">
+    		<div class="reviewlist col-sm-8">
+    			<ul class="col-sm-9 reviews">
+    				<li data-ng-repeat="review in book.reviews"><span style= "font-weight: bold">{{review.reviewer.displayName}}</span> {{review.reviewText}}<br> on {{review.created | date:'mediumDate'}}</li>
     			</ul>
     		</div>
-    		<div data-ng-show="authentication.user._id === book.user._id">
+    		<!-- <div data-ng-hide="authentication.user._id === book.user._id">
     			<button type="button" class="btn btn-info" data-ng-hide="showReview" data-ng-click="showReview = true"><span class="glyphicon glyphicon-pencil"></span>Write a Review</button>
-    		</div>
-    		<div>
-				<form class="form-horizontal" data-ng-show="showReview" data-ng-submit="createReview()" novalidate>
+    		</div> -->
+    		<div class="col-sm-6">
+				<form class="form-horizontal"  data-ng-submit="createReview()" novalidate>
 					<fieldset>
-					    <textarea ng-model='reviewText' class="form-control" rows="4" id="comment" placeholder="Add a review"></textarea>
+					    <input ng-model='reviewText' class="form-control" rows="3" id="comment" placeholder="Start a discussion here..."></input>
 					    <input type="submit" class="btn btn-info " value="Submit">
 					</fieldset>
 				</form>
     		</div>
     	</div>
 	</div>
-	<div class="pull-right" data-ng-show="authentication.user._id == book.user._id">
-		<a class="btn btn-primary" href="/#!/books/{{book._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-
-	<div data-ng-show="createReview">
-
-	<!-- <small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="book.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="book.user.displayName"></span>
-		</em>
-	</small> -->
 </section>

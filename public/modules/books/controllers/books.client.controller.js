@@ -1,8 +1,8 @@
 'use strict';
 
 // Books controller
-angular.module('books').controller('BooksController', ['$scope', '$stateParams', '$location', 'Authentication', 'Books', 'Reviews', 'Likes', '$timeout',
-	function($scope, $stateParams, $location, Authentication, Books, Reviews, Likes, $timeout) {
+angular.module('books').controller('BooksController', ['$scope', '$stateParams', '$location', 'Authentication', 'Books', 'Reviews', 'Likes', '$timeout', '$http',
+	function($scope, $stateParams, $location, Authentication, Books, Reviews, Likes, $timeout, $http) {
 		$scope.authentication = Authentication;
 		$scope.liked = false;
 		$scope.showReview = false;
@@ -98,10 +98,11 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 			$scope.findOne = function() {
 				$scope.book = Books.get({ 
 					bookId: $stateParams.bookId
-				}, function(){
+				}, function(response){
 					$scope.likes = $scope.book.likes.length;
+					console.log(response);
 				}); 
-								
+							console.log($scope.book);	
 			};
 
 		// COMMENT	
@@ -153,7 +154,14 @@ angular.module('books').controller('BooksController', ['$scope', '$stateParams',
 	        $scope.removeError = function() {
 	            $scope.likeError = null;
 	        };
-	        
+	        $scope.load_search = function(){
+			    $http.get($stateParams.author).success(function(response) {
+				    $scope.book_result = response;
+				}).error(function(response) {
+				  $scope.error = response.message;
+				});
+			 };
+
 	        //like a book
 	        $scope.likeBook = function() {
 	            var like = new Likes ({

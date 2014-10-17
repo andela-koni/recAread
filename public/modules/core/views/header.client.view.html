@@ -23,12 +23,6 @@
 				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
 			</li>
 		</ul>
-		<!-- <form class="form-horizontal" data-ng-submit="()" novalidate autocomplete="on">
-			<fieldset>
-			    <input ng-model='reviewText' type="text" placeholder="Search by title, author or genre" autocomplete="on">
-			    <input type="submit" class="btn" value="Go!">
-			</fieldset>
-		</form> -->
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 			<li ui-route="/signup" ng-class="{active: $uiRoute}">
 				<a href="/#!/signup">Sign Up</a>

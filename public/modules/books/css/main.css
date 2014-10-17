@@ -1,5 +1,7 @@
 body {
 	background: #ECE4CB;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 18px;
 }
 
 .addbutton {
@@ -26,9 +28,19 @@ body {
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-color: white;
-background: #dc0e17;
+	color: white;
+	background: #dc0e17;
 }
+
+.btn-danger {
+	margin-top: 8px;
+}
+
+.searchA {
+	width: 470px !important; 
+	margin-top: 8px;
+}
+
 
 .navbar-nav > a:hover {
 	color: #ffffff;
@@ -73,7 +85,6 @@ background: #dc0e17;
 
 .slide {
     position: absolute;
-    /*top: 0;*/
     left: 0;
 }
 
@@ -127,12 +138,44 @@ a.list-group-item {
 
 img.img-responsive {
 	height: 300px;
+	box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.2);
+	border: 1px solid #c1c0aa;
 }
 
 .list-group-item-text {
-	font-family:'Habibi';
 	text-align: center; 
 	color: #007373;
 	margin-top: 5px;
 	font-size: 12px;
+}
+
+h1 {
+	font-family: 'BenchNine', Helvetica, Arial, sans-serif;
+}
+
+.author {
+	color: red;
+}
+
+.description {
+	line-height: 1.6em;
+}
+
+.bookpage {
+	padding: 20px 10px 10px 10px;
+	margin: 0;
+	border: 1px solid #c1c0aa;
+	background: white;
+}
+
+li {
+	list-style: none;
+}
+
+.reviewBody {
+	border: 1px solid #c1c0aa;
+}
+
+.reviews {
+	color: #666666;
 }
